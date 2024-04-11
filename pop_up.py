@@ -55,8 +55,13 @@ class Ui_MainWindow(object):
 
           msg.setInformativeText("Informative text, ya!")
           msg.setDetailedText("details")
-        
+          
+          msg.buttonClicked.connect(self.popup_button)
+
           x=msg.exec_()
+
+    def popup_button(self,i):
+        print(i.text())
 
 if __name__ == "__main__":
     import sys
