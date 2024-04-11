@@ -52,6 +52,10 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.actionNew.triggered.connect(lambda:self.clicked("New was clicked"))
+        self.actionSave.triggered.connect(lambda:self.clicked("Save was clicked"))
+        self.actionCopy.triggered.connect(lambda:self.clicked("Copy was clicked"))
+        self.actionPaste.triggered.connect(lambda:self.clicked("Paste was clicked"))
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -71,6 +75,14 @@ class Ui_MainWindow(object):
         self.actionPaste.setText(_translate("MainWindow", "Paste"))
         self.actionPaste.setStatusTip(_translate("MainWindow", "Paste a file"))
         self.actionPaste.setShortcut(_translate("MainWindow", "Ctrl+V"))
+
+    def clicked(self,text):
+        self.label.setText(text)
+        self.label.adjustSize()
+
+
+
+
 
 
 if __name__ == "__main__":
