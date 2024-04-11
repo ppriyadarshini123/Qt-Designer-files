@@ -48,6 +48,10 @@ class Ui_MainWindow(object):
           msg.setIcon(QMessageBox.Warning)
           #msg.setIcon(QMessageBox.Information)
           #msg.setIcon(QMessageBox.Question)
+         
+          #QMessageBox.Ok,QMessageBox.Open,QMessageBox.Save,QMessageBox.Cancel,QMessageBox.Close,QMessageBox.Yes,QMessageBox.No,QMessageBox.Abort,QMessageBox.Retry,QMessageBox.Ignore
+          msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+        
           x=msg.exec_()
 
 if __name__ == "__main__":
