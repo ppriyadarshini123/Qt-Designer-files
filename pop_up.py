@@ -51,6 +51,10 @@ class Ui_MainWindow(object):
          
           #QMessageBox.Ok,QMessageBox.Open,QMessageBox.Save,QMessageBox.Cancel,QMessageBox.Close,QMessageBox.Yes,QMessageBox.No,QMessageBox.Abort,QMessageBox.Retry,QMessageBox.Ignore
           msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+          msg.setDefaultButton(QMessageBox.No)
+
+          msg.setInformativeText("Informative text, ya!")
+          msg.setDetailedText("details")
         
           x=msg.exec_()
 
