@@ -38,11 +38,16 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Show Pop up"))
-
+        
     def show_pop_up(self):
           msg= QMessageBox()
           msg.setWindowTitle("Tutorial on PyQt5")
           msg.setText("This is the main text!")
+          #4 types of icons in Message box: Warning, critical, information & Question
+          #msg.setIcon(QMessageBox.Critical)
+          msg.setIcon(QMessageBox.Warning)
+          #msg.setIcon(QMessageBox.Information)
+          #msg.setIcon(QMessageBox.Question)
           x=msg.exec_()
 
 if __name__ == "__main__":
