@@ -67,10 +67,10 @@ class Ui_MainWindow(object):
         self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S"))
         self.actionCopy.setText(_translate("MainWindow", "Copy"))
         self.actionCopy.setStatusTip(_translate("MainWindow", "Copy a file"))
-        self.actionCopy.setShortcut(_translate("MainWindow", "Return"))
+        self.actionCopy.setShortcut(_translate("MainWindow", "Ctrl+C"))
         self.actionPaste.setText(_translate("MainWindow", "Paste"))
         self.actionPaste.setStatusTip(_translate("MainWindow", "Paste a file"))
-        self.actionPaste.setShortcut(_translate("MainWindow", "Ctrl+V, Return"))
+        self.actionPaste.setShortcut(_translate("MainWindow", "Ctrl+V"))
 
 
 if __name__ == "__main__":
