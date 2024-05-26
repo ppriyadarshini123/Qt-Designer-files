@@ -9,8 +9,9 @@
 
 from PyQt5.uic import loadUi #Loads a ui file
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QComboBox
+from PyQt5.QtWidgets import QComboBox, QDialog
 import json
+from Order_Details import Ui_Dialog
 
 class Ui_MainWindow(object):
 
@@ -111,7 +112,7 @@ class Ui_MainWindow(object):
         
     def clicked(self):
         #print("clicked")
-        #print(self.textEdit.toPlainText())
+        #print(self.lineEdit.toPlainText())
         #print(self.comboBox.currentText())
         
         if self.radioButton.isChecked:
@@ -135,10 +136,10 @@ class Ui_MainWindow(object):
                     "toppings":self.comboBox_2.currentText()
                     },
             "client":{
-                "name": self.textEdit.toPlainText(),
-                "email": self.textEdit_3.toPlainText(),
-                "phone":self.textEdit_2.toPlainText(),
-                "age": self.textEdit_4.toPlainText()
+                "name": self.lineEdit.text(),
+                "email": self.lineEdit_3.text(),
+                "phone":self.lineEdit_2.text(),
+                "age": self.lineEdit_4.text()
                 }
         }
 
@@ -152,6 +153,14 @@ class Ui_MainWindow(object):
             #convert back to json
             json.dump(file_data, file, indent=4)
         
+        #app = QtWidgets.QApplication(sys.argv)
+        Dialog = QDialog()
+        ui = Ui_Dialog()
+        ui.setupUi(Dialog)
+        Dialog.show()
+        ui.exec()
+        #app.exec()
+        #sys.exit(app.exec_())
         #loadUi("second_file.ui",self)
 
 
@@ -177,17 +186,17 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label.setObjectName("label")
         self.horizontalLayout_3.addWidget(self.label)
-        self.textEdit = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEdit.setObjectName("textEdit")
-        self.horizontalLayout_3.addWidget(self.textEdit)
+        self.lineEdit = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.lineEdit.setObjectName("lineEdit")
+        self.horizontalLayout_3.addWidget(self.lineEdit)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.label_3 = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_4.addWidget(self.label_3)
-        self.textEdit_3 = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEdit_3.setObjectName("textEdit_3")
-        self.horizontalLayout_4.addWidget(self.textEdit_3)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.lineEdit_3.setObjectName("lineEdit_3")
+        self.horizontalLayout_4.addWidget(self.lineEdit_3)
         self.horizontalLayout_3.addLayout(self.horizontalLayout_4)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
@@ -201,17 +210,17 @@ class Ui_MainWindow(object):
         self.label_2 = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_5.addWidget(self.label_2)
-        self.textEdit_2 = QtWidgets.QTextEdit(self.verticalLayoutWidget_2)
-        self.textEdit_2.setObjectName("textEdit_2")
-        self.horizontalLayout_5.addWidget(self.textEdit_2)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.verticalLayoutWidget_2)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.horizontalLayout_5.addWidget(self.lineEdit_2)
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.label_4 = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_6.addWidget(self.label_4)
-        self.textEdit_4 = QtWidgets.QTextEdit(self.verticalLayoutWidget_2)
-        self.textEdit_4.setObjectName("textEdit_4")
-        self.horizontalLayout_6.addWidget(self.textEdit_4)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.verticalLayoutWidget_2)
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.horizontalLayout_6.addWidget(self.lineEdit_4)
         self.horizontalLayout_5.addLayout(self.horizontalLayout_6)
         self.verticalLayout_2.addLayout(self.horizontalLayout_5)
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
@@ -290,7 +299,6 @@ class Ui_MainWindow(object):
         self.comboBox_2.addItem('Extra cheese')
         self.comboBox_2.addItem('Jalapenos')
         
-        #self.comboBox_2 = QtWidgets.QComboBox(self.horizontalLayoutWidget_4)
         self.comboBox_2.setObjectName("comboBox_2")
         self.horizontalLayout_10.addWidget(self.comboBox_2)
         
