@@ -143,7 +143,8 @@ class Ui_MainWindow(object):
                 }
         }
 
-        with open('test.json', 'r+') as file:
+        with open('./Qt Designer files/test.json', 'r+') as file: # Open the file for reading and writing. Read this: https://www.geeksforgeeks.org/how-to-open-and-close-a-file-in-python/
+            # In the relative path, it will look for a file into the directory where this script is running.
             #First we load existing data into a dict.
             file_data = json.load(file)
             #Join new_order with file_data inside "orders"
@@ -152,16 +153,15 @@ class Ui_MainWindow(object):
             file.seek(0)
             #convert back to json
             json.dump(file_data, file, indent=4)
+            #file.close()
         
         #app = QtWidgets.QApplication(sys.argv)
         Dialog = QDialog()
         ui = Ui_Dialog()
         ui.setupUi(Dialog)
         Dialog.show()
-        ui.exec()
-        #app.exec()
-        #sys.exit(app.exec_())
-        #loadUi("second_file.ui",self)
+        Dialog.exec()
+        #loadUi("Order_Details.ui",self)
 
 
 
