@@ -111,10 +111,7 @@ class Ui_MainWindow(object):
 #             #print(data_dict["size"])
         
     def clicked(self):
-        #print("clicked")
-        #print(self.lineEdit.toPlainText())
-        #print(self.comboBox.currentText())
-        
+              
         if self.radioButton.isChecked:
             text_size = self.radioButton.text()
         elif self.radioButton_2.isChecked:
@@ -129,17 +126,15 @@ class Ui_MainWindow(object):
 
         #Append the following data to the existing test.json file
         new_order = {
-            "pizza":{
-                    "name":self.comboBox.currentText(),
+            "order":{
+                    "pizza":self.comboBox.currentText(),
                     "size":text_size,
                     "delivery":text_delivery,
-                    "toppings":self.comboBox_2.currentText()
-                    },
-            "client":{
-                "name": self.lineEdit.text(),
-                "email": self.lineEdit_3.text(),
-                "phone":self.lineEdit_2.text(),
-                "age": self.lineEdit_4.text()
+                    "toppings":self.comboBox_2.currentText(),                  
+                    "client": self.lineEdit.text(),
+                    "email": self.lineEdit_3.text(),
+                    "phone":self.lineEdit_2.text(),
+                    "age": self.lineEdit_4.text()
                 }
         }
 
@@ -153,7 +148,7 @@ class Ui_MainWindow(object):
             file.seek(0)
             #convert back to json
             json.dump(file_data, file, indent=4)
-            #file.close()
+            file.close()
         
         #app = QtWidgets.QApplication(sys.argv)
         Dialog = QDialog()
@@ -161,6 +156,7 @@ class Ui_MainWindow(object):
         ui.setupUi(Dialog)
         Dialog.show()
         Dialog.exec()
+
         #loadUi("Order_Details.ui",self)
 
 
