@@ -9,8 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QComboBox, QDialog
 import json
-
+from update_pizza_order import Update_Ui_Dialog
 
 class Ui_Dialog(object):
 
@@ -82,7 +83,11 @@ class Ui_Dialog(object):
 
 
     def updateclicked(self):
-        pass
+        Dialog = QDialog()
+        ui = Update_Ui_Dialog()
+        ui.setupUi(Dialog)
+        Dialog.show()
+        Dialog.exec()
 
     def deleteclicked(self, selected):
         # if int(self.tableWidget.rowCount()) > 0:
@@ -112,10 +117,6 @@ class Ui_Dialog(object):
             json.dump(file_data, file, indent=4)  
         file.close()  
                     
-                    
-        
-
-
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(1284, 601)
