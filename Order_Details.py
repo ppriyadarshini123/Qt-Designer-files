@@ -9,9 +9,33 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import json
 
 
 class Ui_Dialog(object):
+
+    def loaddata(self):
+        with open('./Qt Designer files/test.json', 'r') as file: # Open the file for reading and writing. Read this: https://www.geeksforgeeks.org/how-to-open-and-close-a-file-in-python/
+            # In the relative path, it will look for a file into the directory where this script is running.
+            #First we load existing data into a dict.
+            file_data = json.load(file)
+            print(len(file_data["orders"]))
+            self.tableWidget.setRowCount(len(file_data["orders"]))
+            row = 0
+            for order in file_data["orders"]:                
+                self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(order["pizza"]["name"]))  
+                #Set column width of each column
+                self.tableWidget.setColumnWidth(0,120) 
+                self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(order["pizza"]["size"]))  
+                #Set column width of each column
+                self.tableWidget.setColumnWidth(1,50) 
+                self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(order["pizza"]["delivery"]))  
+                #Set column width of each column
+                self.tableWidget.setColumnWidth(2,50) 
+                self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(order["pizza"]["toppings"]))  
+                #Set column width of each column
+                self.tableWidget.setColumnWidth(3,100) 
+                row+=1
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -47,6 +71,13 @@ class Ui_Dialog(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(9, item)
 
+        #Set column width of each column
+        # self.tableWidget.setColumnWidth(0,150)
+        # self.tableWidget.setColumnWidth(0,50)
+        #load data from dictionary
+        self.loaddata()
+
+
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept) # type: ignore
         self.buttonBox.rejected.connect(Dialog.reject) # type: ignore
@@ -55,6 +86,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "Pizza name"))
         item = self.tableWidget.horizontalHeaderItem(1)
