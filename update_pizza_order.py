@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import json
 
 class Update_Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -131,8 +132,19 @@ class Update_Ui_Dialog(object):
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setGeometry(QtCore.QRect(180, 620, 163, 23))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel)
         self.buttonBox.setObjectName("buttonBox")
+        
+         #submitButton
+        self.updateButton = QtWidgets.QPushButton(Dialog)
+        self.updateButton.setGeometry(QtCore.QRect(510, 550, 75, 23))
+        self.updateButton.setObjectName("submitButton")
+        self.updateButton.clicked.connect(self.submitclicked)#Event clicked
+        self.updateButton.setText("Update")        
+
+        #Set label width
+        self.label_5.setMinimumWidth(200)
+        self.label_10.setMinimumWidth(200)
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept) # type: ignore
@@ -157,6 +169,29 @@ class Update_Ui_Dialog(object):
         self.label_2.setText(_translate("Dialog", "Phone:"))
         self.label_4.setText(_translate("Dialog", "Age :"))
         self.label_10.setText(_translate("Dialog", "Client details:"))
+
+
+    def submitclicked(self):
+        pass
+
+    def update_data(self, customer_name):
+        with open('./Qt Designer files/test.json', 'r') as file: # Open the file for reading and writing. Read this: https://www.geeksforgeeks.org/how-to-open-and-close-a-file-in-python/
+            # In the relative path, it will look for a file into the directory where this script is running.
+            #First we load existing data into a dict.
+            file_data = json.load(file)
+            print(len(file_data["orders"]))
+            
+            for order in file_data["orders"]: 
+                #Check if order is not empty               
+                if len(order["order"]) != 0:
+                    if order["order"]["client"] == customer_name:
+                        self.lineEdit.setText(order["order"]["client"])
+                        self.lineEdit_2.setText(order["order"]["email"])
+                        self.lineEdit_3.setText(order["order"]["phone"])
+                        self.lineEdit_4.setText(order["order"]["age"])
+                        
+        #Good practice to close the file after use.
+        file.close()
 
 
 if __name__ == "__main__":

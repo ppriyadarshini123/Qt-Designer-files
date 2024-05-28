@@ -70,8 +70,9 @@ class Ui_Dialog(object):
                     self.deleteButton.setText('Delete')
                     self.deleteButton.setObjectName("deleteButton")
                     
-                    self.tableWidget.selectionModel().selectionChanged.connect(self.deleteclicked)#Event clicked
-
+                    #self.tableWidget.selectionModel().selectionChanged.connect(self.deleteclicked)#Event clicked
+                    self.deleteButton.clicked.connect(self.deleteclicked)#Event clicked
+                    
                     #Add a button to the cell
                     self.tableWidget.setCellWidget(row, 9, self.deleteButton)  
                     #Set column width of each column
@@ -86,6 +87,7 @@ class Ui_Dialog(object):
         Dialog = QDialog()
         ui = Update_Ui_Dialog()
         ui.setupUi(Dialog)
+        ui.update_data(self.tableWidget.item(self.tableWidget.currentRow(), 4).text())
         Dialog.show()
         Dialog.exec()
 
